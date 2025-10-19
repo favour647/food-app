@@ -1,10 +1,10 @@
-/ Import the `defineOneEntry` function to create an API client instance
+// Import the `defineOneEntry` function to create an API client instance
 import { defineOneEntry } from 'oneentry';
 import type { IError } from 'oneentry/dist/base/utils';
 
 // Import helper functions for handling refresh tokens
-import retrieveRefreshToken from '@/actions/auth/retrieveRefreshToken';
-import storeRefreshToken from '@/actions/auth/storeRefreshToken';
+import { retrieveRefreshToken } from '@/actions/auth/retrieveRefreshToken';
+import { storeRefreshToken } from '@/actions/auth/storeRefreshToken';
 
 // Define the type for the API client, which can initially be `null`
 export type ApiClientType = ReturnType<typeof defineOneEntry> | null;
@@ -33,7 +33,7 @@ async function setupApiClient(): Promise<ReturnType<typeof defineOneEntry>> {
 
       // Create a new instance of the API client with the required configuration
       apiClient = defineOneEntry(apiUrl, {
-        token: process.env.ONENETRY_TOKEN, // Token for authentication
+        token: process.env.ONEENTRY_TOKEN, // Token for authentication
         langCode: 'en_US', // Language code for the API
         auth: {
           refreshToken: refreshToken || undefined, // Use the retrieved refresh token or `undefined`
